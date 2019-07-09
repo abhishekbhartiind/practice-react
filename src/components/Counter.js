@@ -16,28 +16,12 @@ export default class Counter extends Component {
         console.log("mounting component ")
     }
 
-    increment = () => {
-        this.setState({
-            count: this.state.count + 1
-        })
-    }
-
-    decrement = () => {
-        let dec = this.state.count - 1
-        if(dec <= 0){
-            dec = 0
-        }
-        this.setState({
-            count: dec
-        })
-    }
-
     render() {
         return (
             <div>
-                 <div>Count: {this.state.count}</div> 
-                 <button onClick={this.increment}>Increment</button>  
-                <button onClick={this.decrement}>Decrement</button>
+                 <div>Count: {this.props.count}</div> 
+                 <button onClick={this.props.increment}>Increment</button>  
+                <button onClick={this.props.decrement}>Decrement</button>
             </div>
         )
     }

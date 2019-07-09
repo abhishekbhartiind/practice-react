@@ -22,10 +22,27 @@ import './App.css';
 /* Class Components combines to become huge, render() is actually displayed by return which is in JSX */
 class App extends Component {
   state = {
-    visible: true
+    visible: true,
+    count: 0
   }
   multiply = (a, b) => a * b
   
+  increment = () => {
+    this.setState({
+        count: this.state.count + 1
+    })
+  }
+
+  decrement = () => {
+      let dec = this.state.count - 1
+      if(dec <= 0){
+          dec = 0
+      }
+      this.setState({
+          count: dec
+      })
+  }
+
   render(){
     const btnText = this.state.visible ? "hide": "show";
     let slider = this.state.visible ? <ImageSlider/> : "I am hidden"
@@ -56,7 +73,11 @@ class App extends Component {
             textSubject="I'm learning react using props after component"
           />
           <div style={this.state.visible ? {}: {display:"none"}}>
-            <Counter/>
+            <Counter
+                count={this.state.count}
+                decrement={this.decrement}
+                increment={this.increment}
+            />
           </div>
           <NewForm/>
           <FetchUser/>
